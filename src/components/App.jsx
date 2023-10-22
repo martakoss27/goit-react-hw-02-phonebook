@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form } from './Form';
+import { Contacts } from './Contacts';
 import { nanoid } from 'nanoid';
+import Notiflix from 'notiflix';
 
 export class App extends Component {
   state = {
@@ -26,6 +28,8 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
+    Notiflix.Notify.success('New contact succesfully added!');
+    form.reset();
   };
   //CONTACTS
   handleClick = id => {
@@ -56,19 +60,3 @@ export class App extends Component {
     );
   }
 }
-//CONTACTS
-
-const Contacts = ({ contacts, removeContact }) => {
-  return (
-    <ul>
-      {contacts.map(contact => (
-        <li key={contact.id}>
-          {contact.name}
-          <button type="button" onClick={removeContact}>
-            REMOVE
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-};
