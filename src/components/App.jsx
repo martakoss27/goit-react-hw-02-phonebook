@@ -7,7 +7,9 @@ import Notiflix from 'notiflix';
 export class App extends Component {
   state = {
     contacts: [],
+    filter: '',
     name: '',
+    number: '',
   };
 
   //nanoid = nanoid();
@@ -19,10 +21,12 @@ export class App extends Component {
 
     const {
       name: { value: name },
+      number: { value: number },
     } = form.elements;
     const newContact = {
       id: nanoid(),
       name,
+      number,
     };
 
     this.setState(prevState => ({
@@ -31,20 +35,24 @@ export class App extends Component {
     Notiflix.Notify.success('New contact succesfully added!');
     form.reset();
   };
+
   //CONTACTS
   handleClick = id => {
     const { contacts } = this.state;
-    const deleteContact = contacts.find(contact => contact.id === id);
+    const contactToRemove = contacts.find(contact => contact.id === id);
 
-    if (deleteContact) {
-      this.setState(prevState => ({
-        contacts: prevState.contacts.filter(contact => contact.id !== id),
+    if (contactToRemove) {
+      this.setState(prev => ({
+        contacts: prev.contacts.filter(contact => contact.id !== id),
       }));
+
+      Notiflix.Notify.success(`${contactToRemove.name} has been removed`);
     }
   };
 
   render() {
     console.log(this);
+
     return (
       <div>
         <div>

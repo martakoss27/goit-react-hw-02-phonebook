@@ -5,8 +5,8 @@ export const Contacts = ({ contacts, removeContact }) => {
     <ul>
       {contacts.map(contact => (
         <li key={contact.id}>
-          {contact.name}
-          <button type="button" onClick={removeContact}>
+          {contact.name}:{contact.number}
+          <button type="button" onClick={() => removeContact(contact.id)}>
             REMOVE
           </button>
         </li>
