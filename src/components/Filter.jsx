@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 
 export const Filter = ({ onChange, filter }) => {
   return (
-    <label style={{ color: 'black' }}>
+    <StyledLabel style={{ color: 'black' }}>
       Find contacts by name
       <StyledInput
         name="filter"
@@ -13,7 +13,7 @@ export const Filter = ({ onChange, filter }) => {
         filter={filter}
         onChange={onChange}
       />
-    </label>
+    </StyledLabel>
   );
 };
 
@@ -23,5 +23,18 @@ Filter.propTypes = {
 };
 
 const StyledInput = styled.input`
-  margin-left: 10px;
+  border: 0;
+  font-size: 17px;
+  height: 30px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 5px;
+  margin-top: 5px;
+  &::placeholder {
+    color: #bf4f74;
+  }
+`;
+const StyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
 `;
