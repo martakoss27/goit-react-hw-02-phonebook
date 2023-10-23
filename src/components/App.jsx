@@ -58,7 +58,6 @@ export class App extends Component {
   };
   //FILTER
   handleFilterChange = e => {
-    console.log(e.currentTarget.value.toLowerCase());
     this.setState({ filter: e.currentTarget.value.toLowerCase() });
   };
 

@@ -4,13 +4,14 @@ import { styled } from 'styled-components';
 
 export const Filter = ({ onChange, filter }) => {
   return (
-    <label style={{ color: 'black' }} onChange={onChange}>
+    <label style={{ color: 'black' }}>
       Find contacts by name
       <StyledInput
         name="filter"
         type="text"
         placeholder="Search by name"
         filter={filter}
+        onChange={onChange}
       />
     </label>
   );
