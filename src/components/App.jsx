@@ -57,17 +57,17 @@ export class App extends Component {
     }
   };
   //FILTER
-  handleFilterChange = evt => {
-    console.log(evt.currentTarget.value);
-    this.setState({ filter: evt.currentTarget.value });
+  handleFilterChange = e => {
+    console.log(e.currentTarget.value.toLowerCase());
+    this.setState({ filter: e.currentTarget.value.toLowerCase() });
   };
 
   render() {
     console.log(this);
     const { contacts, filter } = this.state;
-    //const filterSearch = contacts.filter(contact =>
-    // contact.name.toLowerCase().includes(filter.toLowerCase())
-    //);
+    const filterSearch = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter)
+    );
     return (
       <div>
         <div>
@@ -75,10 +75,7 @@ export class App extends Component {
           <Form onSubmit={this.handleSubmit} />
           <h2>Contacts list</h2>
           <Filter onChange={this.handleFilterChange} filter={filter} />
-          <Contacts
-            contacts={this.state.contacts}
-            removeContact={this.handleClick}
-          />
+          <Contacts contacts={filterSearch} removeContact={this.handleClick} />
         </div>
       </div>
     );
